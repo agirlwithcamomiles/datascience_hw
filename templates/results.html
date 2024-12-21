@@ -1,0 +1,25 @@
+{% extends 'base' %}
+
+{% block title %} Search results {% endblock %}
+
+{% block content %}
+    <table class="table">
+	<thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Date</th>
+                <th scope="col">Categories</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in range(0, results|length) %}
+            <tr>
+                <td scope="row">{{ i + 1 }}</td>
+                <td>{{ results[i].title }}</td>
+                <td>{{ results[i].date }}</td>
+                <td>{% for category in results[i].category_name %} {{ category.category_name }}; {% endfor %}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

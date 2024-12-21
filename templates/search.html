@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends 'base' %}
+
+{% block title %} Searching in database {% endblock %}
+
+{% block content %}
+    <form action="/results" target="_blank">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="news_title">Title</label>
+                <select name="news_title" id="news_title" class="form-control">
+				<option value="">Select Title</option>
+                    {% for title in data["titles"] %}
+                        <option value="{{ title.news_id }}">{{ title.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>	
+            <div class="form-group col-md-6"></div>
+                <label for="categories">Category</label>
+                <select name="categories" id="categories" class="form-control">
+                    <option value="">Select Category</option>
+					{% for category in data["categories"] %}
+                        <option value="{{ category.category_id }}">{{ category.category_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <center><button type="submit" class="btn btn-primary">Search</button></center>
+    </form>
+{% endblock %}
